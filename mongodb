@@ -26,7 +26,7 @@ test -x $DAEMON || exit 0
 case "$1" in
   start)
         echo -n "Starting $DESC: "
-        start-stop-daemon --pidfile $PIDFILE --exec $DAEMON --start -- run --dbpath $DBPATH >> $LOGFILE&
+        start-stop-daemon --pidfile $PIDFILE --exec $DAEMON --start -- run --dbpath $DBPATH --syslog
         echo "$NAME."
         ;;
   stop)
@@ -38,7 +38,7 @@ case "$1" in
         echo -n "Restarting $DESC: "
         start-stop-daemon --quiet --pidfile $PIDFILE --dbpath $DBPATH --exec $DAEMON --stop
         sleep 1
-        start-stop-daemon --quiet --pidfile $PIDFILE --dbpath $DBPATH --exec $DAEMON --start -- run >> $LOGFILE&
+        start-stop-daemon --quiet --pidfile $PIDFILE --exec $DAEMON --start -- run --dbpath $DBPATH --syslog
         echo "$NAME."
         ;;
   reload)
