@@ -15,8 +15,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/opt/mongo/bin/mongod
 PIDFILE=/var/run/mongodb.pid
 LOGFILE=/var/log/mongod.log
-DBPATH=/opt/mongo/data/
-config="/etc/mongodb/mongodb.conf"
+#DBPATH=/opt/mongo/data/
+CONF="/etc/mongodb/mongodb.conf"
 NAME=mongodb
 DESC=mongodb
 
@@ -28,24 +28,24 @@ test -x $DAEMON || exit 0
 case "$1" in
   start)
         echo -n "Starting $DESC: "
-        start-stop-daemon --pidfile $PIDFILE --exec $DAEMON --start -- run --dbpath $DBPATH --syslog
+        start-stop-daemon --pidfile $PIDFILE --exec $DAEMON --start -- run --config $CONF
         echo "$NAME."
         ;;
   stop)
         echo -n "Stopping $DESC: "
-        start-stop-daemon --quiet --pidfile $PIFDILE --dbpath $DBPATH --exec $DAEMON --stop
+        start-stop-daemon --quiet --pidfile $PIFDILE --config $CONF --exec $DAEMON --stop
         echo "$NAME."
         ;;
   restart|force-reload)
         echo -n "Restarting $DESC: "
-        start-stop-daemon --quiet --pidfile $PIDFILE --dbpath $DBPATH --exec $DAEMON --stop
+        start-stop-daemon --quiet --pidfile $PIDFILE --config $CONF --exec $DAEMON --stop
         sleep 1
-        start-stop-daemon --quiet --pidfile $PIDFILE --exec $DAEMON --start -- run --dbpath $DBPATH --syslog
+        start-stop-daemon --quiet --pidfile $PIDFILE --exec $DAEMON --start -- run --config $CONF
         echo "$NAME."
         ;;
   reload)
       echo -n "Reloading $DESC configuration: "
-      start-stop-daemon --stop --signal HUP --quiet --dbpath $DBPATH --pidfile $PIDFILE --exec $DAEMON
+      start-stop-daemon --stop --signal HUP --quiet --config $CONF --pidfile $PIDFILE --exec $DAEMON
       echo "$NAME."
       ;;
   *)
