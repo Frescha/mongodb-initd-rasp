@@ -14,8 +14,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 DAEMON=/opt/mongo/bin/mongod
 PIDFILE=/var/run/mongodb.pid
-LOGFILE=/var/log/mongod.log
-#DBPATH=/opt/mongo/data/
 CONF="/etc/mongodb/mongodb.conf"
 NAME=mongodb
 DESC=mongodb
