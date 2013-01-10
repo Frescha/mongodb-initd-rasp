@@ -12,7 +12,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-DAEMON=/opt/mongo/bin/mongod
+DAEMON=/opt/mongodb/bin/mongod
 PIDFILE=/var/run/mongodb.pid
 CONF="/etc/mongodb/mongodb.conf"
 NAME=mongodb
